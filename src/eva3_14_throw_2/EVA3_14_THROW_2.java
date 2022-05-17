@@ -5,6 +5,8 @@
  */
 package eva3_14_throw_2;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,12 +30,23 @@ public class EVA3_14_THROW_2 {
         }
         
         try {
-            persona persona2 = new persona("Juan Salomon",30);
+            persona persona2 = new persona("Juan Salomon",CapturarEdad());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
+
+   public static int CapturarEdad() throws Exception {
+       Scanner input = new Scanner(System.in);
+       System.out.println("Captura la edad: ");
+       int valor = 0;
+       try{
+            valor = input.nextInt();
+       }catch(InputMismatchException e) {
+           throw new Exception("Introdujiste una cadena de texto, no es un numero entero");
+       }
+       return valor;
+   }
 }
 
 class persona {
